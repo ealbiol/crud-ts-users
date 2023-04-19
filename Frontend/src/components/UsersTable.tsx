@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { styled } from '@mui/material/styles';
 import {
   Table,
   TableBody,
@@ -13,8 +12,6 @@ import {
   Pagination,
   Stack
 } from '@mui/material';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import { TransitionProps } from '@mui/material/transitions';
 import { getAllUsers } from "../api/user";
 import { IUser } from '../interfaces/User';
 import { StyledTableCell } from '../utils/utils';
@@ -41,15 +38,15 @@ export default function CustomizedTables() {
   const onChangePage = (event: React.ChangeEvent<unknown>, page: number) => {
 
     console.log("ELEMENT", page);
-    gettingAllUsers(page-1)
+    gettingAllUsers(page - 1)
   }
   useEffect(() => {
-   
+
     gettingAllUsers(0);
 
   }, [])
 
- 
+
 
 
   return (
@@ -61,21 +58,23 @@ export default function CustomizedTables() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              {tableHeaders.map((header,key) => (
-               <StyledTableCell key={key}>{header}</StyledTableCell>
+              {tableHeaders.map((header, key) => (
+                <StyledTableCell key={key} sx={{ fontWeight: 'bold', m: 1 }}>{header}</StyledTableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
             {allUsers.map((row: IUser) => (
-               <UserRow key={row._id} row={row} />
+              <UserRow key={row._id} row={row} />
             ))}
           </TableBody>
         </Table>
       </TableContainer>
-      <Stack spacing={2}>
-        <Pagination count={15} color="primary" onChange={onChangePage} />
-      </Stack>
+      <Box sx={{ m: 4, display: "flex", justifyContent: "center" }}>
+        <Stack spacing={2}>
+          <Pagination count={15} color="primary" onChange={onChangePage} />
+        </Stack>
+      </Box>
     </Box>
   );
 }
