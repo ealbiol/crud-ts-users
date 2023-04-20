@@ -3,7 +3,7 @@ import { IUser } from '../interfaces/User';
 
 // 2. Create a Schema corresponding to the document interface.
 export const userSchema = new Schema<IUser>({
-    id: { type: Number, required: true },
+    id: { type: Number },
     first: { type: String, required: true },
     email: { type: String, required: true },
     last: { type: String, required: true },

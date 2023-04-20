@@ -63,7 +63,6 @@ const start = () => __awaiter(void 0, void 0, void 0, function* () {
         app.get('/api/v1/test', (req, res) => { res.status(200).send({ test: 'ok' }); });
         app.use(`/api/v1`, User_1.api);
         app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-            console.log(`Express is listening at http://localhost:${port}`);
         }));
     }
 });
