@@ -29,9 +29,6 @@ app.use((req, res, next) => {
   res.header("Allow", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-// Basic Routes
-
-
 
 const start = async () => {
     const connect = await mongoose.connect(

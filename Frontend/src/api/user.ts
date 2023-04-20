@@ -4,20 +4,17 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 
 export const getAllUsers = async (page: number) => {
-    console.log("BACKEND", BACKEND_URL)
     try {
         const url = `${BACKEND_URL}/allUsers/${page}`;
         const result = await fetch(url);
         return result.json();
     } catch (error) {
-        console.log(error);
+        console.error(error);
 
     }
 }
 
-
 export const createUser = async (user: IUser) => {
-    console.log("USER", JSON.stringify(user))
     try {
         const url = `${BACKEND_URL}/createUser`;
         const params = {
@@ -28,13 +25,12 @@ export const createUser = async (user: IUser) => {
         const result = await fetch(url, params);
         return result.json()
     } catch (error) {
-        console.log(error);
+        console.error(error);
 
     }
 }
 
 export const deleteUser = async (id: string) => {
-    console.log("DELETE", id);
     try {
         const url = `${BACKEND_URL}/deleteUser/${id}`;
         const params = {
@@ -47,9 +43,8 @@ export const deleteUser = async (id: string) => {
         console.error(error);
     }
 }
+
 export const updateUser = async (id: string, user: IUser) => {
-    console.log("Update", id, user);
-    console.log("USER", JSON.stringify(user))
     try {
         const url = `${BACKEND_URL}/updateUser/${id}`;
         const params = {
@@ -60,7 +55,7 @@ export const updateUser = async (id: string, user: IUser) => {
         const result = await fetch(url, params);
         return result.json()
     } catch (error) {
-        console.log(error);
+        console.error(error);
 
     }
 }

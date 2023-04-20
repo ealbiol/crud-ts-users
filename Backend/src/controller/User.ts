@@ -12,56 +12,50 @@ export const getUsers = async (req, res) => {
 };
 export const createUser = async (req, res) => {
     const user = new User();
-
-    const {id, first, email, last, company, country} = req.body;
+    const { id, first, email, last, company, country } = req.body;
     try {
-    
         user.id = id;
         user.first = first;
         user.email = email,
-        user.last = last;
+            user.last = last;
         user.company = company;
         user.created_at = new Date();
         user.country = country;
 
         const userStored = await user.save();
         if (!userStored) {
-            res.status(500).send({error: "Not stored"});
+            res.status(500).send({ error: "Not stored" });
         }
         res.status(200).send(userStored);
-    }catch(error){
+    } catch (error) {
         res.status(500).send(error)
     }
-
 };
-export const getUserById = (req, res) => { };
-export const deleteUser = async(req, res) => { 
-    const {id} = req.params;
+export const deleteUser = async (req, res) => {
+    const { id } = req.params;
     const result = await User.findByIdAndDelete(id);
     res.status(200).send(result);
 };
-export const updateUser = async(req, res) => {
-    const {id } = req.params;
-    const { first, email, last, company, country} = req.body;
+export const updateUser = async (req, res) => {
+    const { id } = req.params;
+    const { first, email, last, company, country } = req.body;
     try {
         const data = {
             first,
-            email, 
+            email,
             last,
             company,
-            country 
+            country
         }
-      
-
         const userStored = await User.findByIdAndUpdate(id, data);
         if (!userStored) {
-            res.status(500).send({error: "Not stored"});
+            res.status(500).send({ error: "Not stored" });
         }
         res.status(200).send(userStored);
-    }catch(error){
+    } catch (error) {
         res.status(500).send(error)
     }
- };
+};
 
 
 

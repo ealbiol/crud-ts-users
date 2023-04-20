@@ -1,15 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IUser } from '../interfaces/User'
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  TextField,
-  DialogContentText,
-  DialogActions,
-  Slide,
-} from '@mui/material';
+import { Button, Slide } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
 import { StyledTableCell, StyledTableRow } from '../utils/utils';
 
@@ -29,17 +20,11 @@ interface Props {
   contentButton: string;
   setContentButton: (contentButton: string) => void;
   handleClose: () => void;
-  handleClickOpen: (e:any, row:any) => void;
+  handleClickOpen: (e: any, row: any) => void;
   setRowSelected: (row: IUser) => void;
 }
 
-
 export default function UserRow({ row, open, setOpen, contentButton, setContentButton, handleClose, handleClickOpen }: Props) {
-  //const handleDelete = (id:number) => {
-
-  //}
-  console.log("CONTENT" , contentButton);
-
   return (
     <StyledTableRow key={row._id}>
       <StyledTableCell component="th" scope="row">{row.id}</StyledTableCell>
@@ -51,9 +36,7 @@ export default function UserRow({ row, open, setOpen, contentButton, setContentB
       <StyledTableCell>{row.country}</StyledTableCell>
       <StyledTableCell>
         <Button id="edit" onClick={(e) => handleClickOpen(e, row)} sx={{ marginRight: "10px" }} variant="contained" color="primary">Edit</Button>
-       
-        <Button id="delete" onClick={(e) => handleClickOpen(e,row)} variant="contained" color="error">Delete</Button>
-      
+        <Button id="delete" onClick={(e) => handleClickOpen(e, row)} variant="contained" color="error">Delete</Button>
       </StyledTableCell>
     </StyledTableRow>
   )

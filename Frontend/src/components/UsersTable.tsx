@@ -12,10 +12,7 @@ import {
   Pagination,
   Stack,
   Dialog,
-  DialogContent,
   DialogTitle,
-  TextField,
-  DialogContentText,
   DialogActions,
   Slide
 } from '@mui/material';
@@ -63,18 +60,16 @@ export default function CustomizedTables() {
   const tableHeaders = ["ID", "First Name", "Last Name", "Email", "Company", "Created at", "Country", "Action"];
   const [allUsers, setAllUsers] = useState([])
 
-  //
+
   const refresh = () => {
     gettingAllUsers(currentPage);
   }
   const gettingAllUsers = async (page: number) => {
     const response = await getAllUsers(page);
-    console.log("DATA", response);
     setAllUsers(response)
   }
-  //
+
   const onChangePage = (event: React.ChangeEvent<unknown>, page: number) => {
-    console.log("ELEMENT", page);
     gettingAllUsers(page - 1)
     setCurrentPage(page - 1)
   }
@@ -84,12 +79,11 @@ export default function CustomizedTables() {
   }, [])
 
   const handleClickOpen = (e: any, rowSelected: IUser = initUser) => {
-    console.log(e.target.id);
     const content = e.target.id
     setContentButton(content);
     if (rowSelected) {
       setRowSelected(rowSelected);
-      if (content==="edit"){
+      if (content === "edit") {
 
         setFormInput(rowSelected);
       }
@@ -105,7 +99,7 @@ export default function CustomizedTables() {
     refresh();
 
   }
-  const handleUpdate = async (e:any) => {
+  const handleUpdate = async (e: any) => {
     e.preventDefault();
     let data = formInput;
     await updateUser(data._id, data);
@@ -124,13 +118,12 @@ export default function CustomizedTables() {
   const handleInput = (evt: any) => {
     const name = evt.target.name;
     const newValue = evt.target.value;
-    console.log("NAME ", name, "VALUE", newValue);
     setFormInput({ [name]: newValue });
   };
   return (
     <Box sx={{ m: 2 }}>
       <Button id="create" sx={{ m: 2 }} variant="contained" color="success" onClick={handleClickOpen}>Add New User</Button>
-  
+
       {contentButton === "create" && (
         <DataDialog open={open} handleData={handleCreate} handleInput={handleInput} handleClose={handleClose} input={formInput} />
       )}
